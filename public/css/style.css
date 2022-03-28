@@ -1,0 +1,28 @@
+.type {
+    margin: -20px 0px 6px 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.typecolor {
+    margin-right: 5px;
+    width: 70px;
+    text-align: center;
+    font-size: small;
+    padding: 0px;
+    border: thin solid black;
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+/* body {
+    background-image: url('/img/pika.jpg');
+} */
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
