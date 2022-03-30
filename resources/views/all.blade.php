@@ -120,7 +120,7 @@
                 <div>
                     <div class="img-container p-6">
                         <div>
-                            <img class="rounded w-96 bg-gray-200 " src="${pokemon.sprites.other.home.front_default}" />
+                            <img class="rounded w-96 bg-gray-300 " src="${pokemon.sprites.other.home.front_default}" />
                             <span class="text-gray-500 ml-2 text-sm">Nr.${pokemon.id.toString().padStart(3, '0')}</span>
                         </div>
                     </div>
