@@ -49,8 +49,8 @@
                 const type1 = document.createElement('p');
                 const type2 = document.createElement('p');
 
-                type1.classList.add("typecolor");
-                type2.classList.add("typecolor");
+                type1.classList.add("typecolorall");
+                type2.classList.add("typecolorall");
 
                 type1.innerText = types[0]['type']['name'];
 

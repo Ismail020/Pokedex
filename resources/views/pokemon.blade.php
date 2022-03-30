@@ -2,7 +2,8 @@
     <div class="container mx-auto sm:px-6 lg:px-28">
         <div class=" drop-shadow-2xl rounded grid grid-cols-2">
             <div class="flex justify-start">
-                <img class="object-contain w-96" id="img" src="" alt="">
+                <img class="object-contain w-96 z-50" id="img" src="" alt="">
+                <p id="japan" class="text-transparent absolute z-0 text-7xl vamp mt-[350px]"></p>
             </div>
 
             <div>
@@ -14,11 +15,12 @@
                         <p class="text-6xl text-white drop-shadow-2xl" id="name"></p>
                     </div>
                 </div>
-                <div class="flex flex-row w-24 ml-3 mt-3" id="types">
-
+                <div class="flex flex-row w-24 ml-3 mt-5">
+                    <div id="types" class="flex flex-row">
+                    </div>
                 </div>
                 <div>
-                    <div class="flex flex-row ml-3 mt-3">
+                    <div class="flex flex-row ml-3 mt-5">
                         <div>
                             <div class="flex flex-row">
                                 <p class="text-xs mr-1 text-white">Height:</p>
@@ -30,14 +32,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ml-3 mt-3">
+                    <div class="ml-3 mt-5">
                         <p class="text-white">Pokedex entry:</p>
                         <p class="text-sm font-light text-white" id="flavor"></p>
                     </div>
                 </div>
 
                 <div class="ml-3">
-                    <p class="mt-3 text-white">Base stats:</p>
+                    <p class="mt-5 text-white">Base stats:</p>
 
                     <div>
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
@@ -76,24 +78,35 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-        <div class="flex flex-col">
-            <div class="flex justify-center">
-                <p class="text-white mb-5 font-medium">EVOLUTION</p>
+        <div class="flex flex-col grid grid-cols-3 mt-20 mb-20">
+            <div>
+                <div class="flex ">
+                    <p class="text-white mb-5 font-medium">EVOLUTION</p>
+                </div>
+                <div class="flex">
+                    <div class="border-none rounded-full bg-gray-100 mr-2">
+                        <img id="evo1img" src="" alt="">
+                    </div>
+                    <div class="border-none rounded-full bg-gray-100 mr-2">
+                        <img id="evo2img" src="" alt="">
+                    </div>
+                    <div class="border-none rounded-full bg-gray-100 mr-2">
+                        <img id="evo3img" src="" alt="">
+                    </div>
+                </div>
             </div>
-            <div class="flex justify-center col-row space-x-2">
-                <div class="border-none rounded-full bg-gray-100">
-                    <img id="evo1img" src="" alt="">
+            <div class="flex flex-col ml-3">
+                <div class="">
+                    <p class="text-white mb-5 font-medium">ABILITIES</p>
                 </div>
-                <div class="border-none rounded-full bg-gray-100">
-                    <img id="evo2img" src="" alt="">
-                </div>
-                <div class="border-none rounded-full bg-gray-100">
-                    <img id="evo3img" src="" alt="">
+                <div id="abilities" class="flex flex-col text-sm font-light">
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -114,24 +127,20 @@
                         document.getElementById("evo1img").src = data.sprites.front_default;
                     });
 
-                    if (data.chain.evolves_to[0]) {
+                    if (data.chain.evolves_to.length > 0) {
                         let evo2 = data.chain.evolves_to[0].species.name;
                         $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo2}/`, data => {
                             document.getElementById("evo2img").src = data.sprites.front_default;
-
-                            arrowdiv = document.getElementById("arrow");
-                            var arrow1 = document.createElement("img");
-                            arrow1.src = '/img/arrow.svg';
-                            arrowdiv.appendChild(arrow1);
                         });
+
+                        if (data.chain.evolves_to[0].evolves_to[0]) {
+                            let evo3 = data.chain.evolves_to[0].evolves_to[0].species.name;
+                            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo3}/`, data => {
+                                document.getElementById("evo3img").src = data.sprites.front_default;
+                            });
+                        }
                     }
 
-                    if (data.chain.evolves_to[0].evolves_to[0]) {
-                        let evo3 = data.chain.evolves_to[0].evolves_to[0].species.name;
-                        $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo3}/`, data => {
-                            document.getElementById("evo3img").src = data.sprites.front_default;
-                        });
-                    }
 
                     const type1 = document.createElement('div');
                     type1.classList.add("typecolor");
@@ -139,75 +148,75 @@
                     function typecolor(x, y) {
                         if (result1[0].types[x].type.name == 'fire') {
                             var img = document.createElement("img");
-                            img.src = '/img/fire.svg';
+                            img.src = '/img/box/fire.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'grass') {
                             var img = document.createElement("img");
-                            img.src = '/img/grass.svg';
+                            img.src = '/img/box/grass.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'water') {
                             var img = document.createElement("img");
-                            img.src = '/img/water.svg';
+                            img.src = '/img/box/water.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'bug') {
                             var img = document.createElement("img");
-                            img.src = '/img/bug.svg';
+                            img.src = '/img/box/bug.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'normal') {
                             var img = document.createElement("img");
-                            img.src = '/img/normal.svg';
+                            img.src = '/img/box/normal.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'electric') {
                             var img = document.createElement("img");
-                            img.src = '/img/electric.svg';
+                            img.src = '/img/box/electric.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'ice') {
                             var img = document.createElement("img");
-                            img.src = '/img/ice.svg';
+                            img.src = '/img/box/ice.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'fighting') {
                             var img = document.createElement("img");
-                            img.src = '/img/fighting.svg';
+                            img.src = '/img/box/fighting.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'poison') {
                             var img = document.createElement("img");
-                            img.src = '/img/poison.svg';
+                            img.src = '/img/box/poison.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'ground') {
                             var img = document.createElement("img");
-                            img.src = '/img/ground.svg';
+                            img.src = '/img/box/ground.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'flying') {
                             var img = document.createElement("img");
-                            img.src = '/img/flying.svg';
+                            img.src = '/img/box/flying.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'psychic') {
                             var img = document.createElement("img");
-                            img.src = '/img/psychic.svg';
+                            img.src = '/img/box/psychic.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'rock') {
                             var img = document.createElement("img");
-                            img.src = '/img/rock.svg';
+                            img.src = '/img/box/rock.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'ghost') {
                             var img = document.createElement("img");
-                            img.src = '/img/ghost.svg';
+                            img.src = '/img/box/ghost.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'dark') {
                             var img = document.createElement("img");
-                            img.src = '/img/dark.svg';
+                            img.src = '/img/box/dark.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'dragon') {
                             var img = document.createElement("img");
-                            img.src = '/img/dragon.svg';
+                            img.src = '/img/box/dragon.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'steel') {
                             var img = document.createElement("img");
-                            img.src = '/img/steel.svg';
+                            img.src = '/img/box/steel.svg';
                             y.appendChild(img);
                         } else if (result1[0].types[x].type.name == 'fairy') {
                             var img = document.createElement("img");
-                            img.src = '/img/fairy.svg';
+                            img.src = '/img/box/fairy.svg';
                             y.appendChild(img);
                         }
                     }
@@ -219,7 +228,6 @@
                         const type2 = document.createElement('div');
                         type2.classList.add("typecolor");
                         typecolor(1, type2);
-                        // type2.innerText = result1[0].types[1].type.name;
                         document.getElementById('types').append(type2)
                     }
 
@@ -238,8 +246,37 @@
                     document.getElementById('sp_defense').innerText = result1[0].stats[4].base_stat;
                     document.getElementById('speed').innerText = result1[0].stats[5].base_stat;
                     document.getElementById('total').innerText = result1[0].stats.reduce((a, b) => a + b.base_stat, 0);
-                    let test = result2[0].flavor_text_entries[0].flavor_text;
-                    document.getElementById('flavor').innerText = test.replace(/\n/g, ' ');
+
+                    info = result2[0].flavor_text_entries;
+                    info.forEach(element => {
+                        if (element.language.name == "en") {
+                            let desc = element.flavor_text
+                            document.getElementById('flavor').innerText = desc.replace(/\n/g, ' ');
+                        }
+                    });
+
+                    document.getElementById('japan').innerText = result2[0].names[0].name;
+
+                    let abilitiesarray = result1[0].abilities;
+                    abilitiesarray.forEach(element => {
+                        const ability = document.createElement('p');
+                        const info = document.createElement('p');
+                        ability.classList.add("ability");
+                        info.classList.add("info");
+                        $.getJSON(element.ability.url, function(result) {
+                            let slice = result.name.replace(/-/g, ' ');
+                            ability.innerText = slice.charAt(0).toUpperCase() + slice.slice(1);
+                            tist = result.effect_entries;
+                            tist.forEach(element => {
+                                if (element.language.name == "en") {
+                                    info.innerText = element.short_effect;
+                                }
+                            });
+
+                            document.getElementById('abilities').append(ability);
+                            document.getElementById('abilities').append(info);
+                        });
+                    })
 
                     function getAverageColor(imageElement, ratio) {
                         const canvas = document.createElement("canvas")
