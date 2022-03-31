@@ -86,8 +86,8 @@
                 <div class="flex ">
                     <p class="text-white mb-5 font-medium">EVOLUTION</p>
                 </div>
-                <div class="flex">
-                    <div class="border-none rounded-full bg-gray-100 mr-2">
+                <div id="evo" class="flex grid grid-cols-3 gap-2">
+                    {{-- <div class="border-none rounded-full bg-gray-100 mr-2">
                         <img id="evo1img" src="" alt="">
                     </div>
                     <div class="border-none rounded-full bg-gray-100 mr-2">
@@ -95,7 +95,7 @@
                     </div>
                     <div class="border-none rounded-full bg-gray-100 mr-2">
                         <img id="evo3img" src="" alt="">
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="flex flex-col ml-3">
@@ -122,22 +122,50 @@
                 , $.getJSON(species)
             ).done(function(result1, result2) {
                 $.getJSON(result2[0].evolution_chain.url, data => {
+                    evodiv = document.getElementById('evo');
                     let evo1 = data.chain.species.name;
                     $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo1}/`, data => {
-                        document.getElementById("evo1img").src = data.sprites.front_default;
+                        var divevo = document.createElement("div");
+                        divevo.classList.add("evo");
+                        var imgevo = document.createElement("img");
+                        imgevo.src = data.sprites.front_default;
+                        evodiv.appendChild(divevo);
+                        divevo.appendChild(imgevo);
                     });
 
                     if (data.chain.evolves_to.length > 0) {
-                        let evo2 = data.chain.evolves_to[0].species.name;
-                        $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo2}/`, data => {
-                            document.getElementById("evo2img").src = data.sprites.front_default;
+                        let evo2 = data.chain.evolves_to;
+
+                        evo2.forEach(element => {
+                            let evo2 = element.species.name;
+                            console.log(element.species);
+                            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo2}/`, data => {
+                                var divevo = document.createElement("div");
+                        divevo.classList.add("evo");
+                                var imgevo = document.createElement("img");
+                                imgevo.src = data.sprites.front_default;
+                                evodiv.appendChild(divevo);
+                                divevo.appendChild(imgevo);
+                            });
                         });
 
                         if (data.chain.evolves_to[0].evolves_to[0]) {
-                            let evo3 = data.chain.evolves_to[0].evolves_to[0].species.name;
-                            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo3}/`, data => {
-                                document.getElementById("evo3img").src = data.sprites.front_default;
-                            });
+                            let evo3 = data.chain.evolves_to;
+                            evo3.forEach(element => {
+                                console.log(evo3[0].evolves_to);
+                                let evoevo3 = evo3[0].evolves_to;
+                                evoevo3.forEach(element => {
+                                    let evo3name = element.species.name;
+                                    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo3name}/`, data => {
+                                        var divevo = document.createElement("div");
+                        divevo.classList.add("evo");
+                                        var imgevo = document.createElement("img");
+                                        imgevo.src = data.sprites.front_default;
+                                        evodiv.appendChild(divevo);
+                                        divevo.appendChild(imgevo);
+                                    });
+                                })
+                            })
                         }
                     }
 

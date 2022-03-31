@@ -98,3 +98,13 @@
 	border-width: 5px;
 	margin-left: -5px;
 }
+
+.evo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    max-width: 100px;
+    border-radius: 200px;
+    background-color: gray;
+}
