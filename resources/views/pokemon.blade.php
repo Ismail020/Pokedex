@@ -144,6 +144,10 @@
                         imgevo.src = data.sprites.front_default;
                         evodiv.appendChild(divevo);
                         divevo.appendChild(imgevo);
+                        divevo.onclick = function() {
+                            location.href = '{{ env('
+                            url ') }}' + evo1;
+                        };
                     });
 
                     if (data.chain.evolves_to.length > 0) {
@@ -159,6 +163,10 @@
                                 imgevo.src = data.sprites.front_default;
                                 evodiv.appendChild(divevo);
                                 divevo.appendChild(imgevo);
+                                divevo.onclick = function() {
+                                    location.href = '{{ env('
+                                    url ') }}' + evo2;
+                                };
                             });
                         });
 
@@ -176,6 +184,10 @@
                                         imgevo.src = data.sprites.front_default;
                                         evodiv.appendChild(divevo);
                                         divevo.appendChild(imgevo);
+                                        divevo.onclick = function() {
+                                            location.href = '{{ env('
+                                            url ') }}' + evo3name;
+                                        };
                                     });
                                 })
                             })
