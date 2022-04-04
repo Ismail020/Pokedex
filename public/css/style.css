@@ -59,46 +59,6 @@
     margin-bottom: 8px;
 }
 
-
-
-
-
-.hover p {
-    position: absolute;
-    color: white;
-    margin-top: -25px;
-    margin-left: 7px;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s;
-}
-
-.hover:hover p {
-    visibility: visible;
-    opacity: 1;
-}
-
-.cloud {
-	position: relative;
-	background: black;
-    border-radius: 5px;
-    width: 35px;
-}
-.cloud:after {
-	top: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: "";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-color: rgba(255, 255, 255, 0);
-	border-top-color: black;
-	border-width: 5px;
-	margin-left: -5px;
-}
-
 .evo {
     display: flex;
     justify-content: center;
@@ -106,5 +66,83 @@
     border-style: none;
     max-width: 100px;
     border-radius: 200px;
-    background-color: gray;
+    background-color: white;
+}
+
+.cont {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.ball{
+  display: inline-block;
+  margin-left: 5px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  -moz-animation: bounce 1.7s infinite cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  -webkit-animation: bounce 1.7s infinite cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  animation: bounce 1.7s infinite cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}
+
+.ball:nth-child(1){
+  animation-delay: .2s;
+}
+.ball:nth-child(2){
+  animation-delay: .4s;
+}
+.ball:nth-child(3){
+  animation-delay: .6s;
+}
+.ball:nth-child(4){
+  animation-delay: .8s;
+}
+.ball:nth-child(5){
+  animation-delay: 1s;
+}
+
+@-moz-keyframes bounce {
+    0% {
+		transform: translateY(0);
+    }
+  	15% {
+        transform: translateY(-22px);
+    }
+    30% {
+        transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes bounce {
+    0% {
+    transform: translateY(0);
+    }
+    15% {
+        transform: translateY(-22px);
+    }
+    30% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0% {
+    transform: translateY(0);
+    }
+    15% {
+        transform: translateY(-22px);
+    }
+    30% {
+        transform: translateY(0);
+    }
 }

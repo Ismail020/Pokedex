@@ -515,8 +515,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ml-3 {
   margin-left: 0.75rem;
 }
-.mt-3 {
-  margin-top: 0.75rem;
+.mt-5 {
+  margin-top: 1.25rem;
 }
 .mr-1 {
   margin-right: 0.25rem;
@@ -533,6 +533,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.mr-14 {
+  margin-right: 3.5rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -542,8 +545,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-mt-\[250px\] {
   margin-top: -250px;
 }
-.mt-5 {
-  margin-top: 1.25rem;
+.mt-3 {
+  margin-top: 0.75rem;
 }
 .ml-5 {
   margin-left: 1.25rem;
@@ -559,12 +562,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .mb-2 {
   margin-bottom: 0.5rem;
-}
-.mt-7 {
-  margin-top: 1.75rem;
-}
-.mt-2 {
-  margin-top: 0.5rem;
 }
 .flex {
   display: flex;
@@ -643,10 +640,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-x-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-y-hidden {
+  overflow-y: hidden;
 }
 .rounded-md {
   border-radius: 0.375rem;
@@ -798,9 +796,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .font-light {
   font-weight: 300;
 }
-.capitalize {
-  text-transform: capitalize;
-}
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -815,10 +810,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);

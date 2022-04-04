@@ -86,7 +86,7 @@
                 <div class="flex ">
                     <p class="text-white mb-5 font-medium">EVOLUTION</p>
                 </div>
-                <div id="evo" class="flex grid grid-cols-3 gap-2">
+                <div id="evo" class="flex grid grid-cols-3 gap-2 mr-14 ">
                     {{-- <div class="border-none rounded-full bg-gray-100 mr-2">
                         <img id="evo1img" src="" alt="">
                     </div>
@@ -108,7 +108,20 @@
         </div>
 
     </div>
-
+    <div class="cont">
+        <div class="loader">
+            <div class="ball"><img src="/img/loader/poke.webp" alt=""></div>
+            <div class="ball"><img src="/img/loader/great.webp" alt=""></div>
+            <div class="ball"><img src="/img/loader/master.webp" alt=""></div>
+            <div class="ball"><img src="/img/loader/ultra.webp" alt=""></div>
+            <div class="ball"><img src="/img/loader/premier.png" alt=""></div>
+        </div>
+        <div>
+            <p class="mt-5">
+                Loading pokemon...
+            </p>
+        </div>
+    </div>
     <script>
         (async () => {
             url = `https://pokeapi.co/api/v2/pokemon/{{ $pokemon }}/`
@@ -141,7 +154,7 @@
                             console.log(element.species);
                             $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo2}/`, data => {
                                 var divevo = document.createElement("div");
-                        divevo.classList.add("evo");
+                                divevo.classList.add("evo");
                                 var imgevo = document.createElement("img");
                                 imgevo.src = data.sprites.front_default;
                                 evodiv.appendChild(divevo);
@@ -158,7 +171,7 @@
                                     let evo3name = element.species.name;
                                     $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo3name}/`, data => {
                                         var divevo = document.createElement("div");
-                        divevo.classList.add("evo");
+                                        divevo.classList.add("evo");
                                         var imgevo = document.createElement("img");
                                         imgevo.src = data.sprites.front_default;
                                         evodiv.appendChild(divevo);
@@ -367,6 +380,17 @@
                 });
             });
         })();
+
+        $(window).on('load', function() {
+            setTimeout(removeLoader, 2000); //wait for page load PLUS two seconds.
+        });
+
+        function removeLoader() {
+            $(".cont").fadeOut(500, function() {
+                // fadeOut complete. Remove the loading div
+                $(".cont").remove(); //makes page more lightweight 
+            });
+        }
 
     </script>
 </x-layout>
