@@ -86,13 +86,18 @@
                 <div class="flex ">
                     <p class="text-white mb-5 font-medium">EVOLUTION</p>
                 </div>
-                <div id="evo" class="flex grid grid-cols-3 gap-2">
+                <div id="evo" class="flex grid grid-cols-3 gap-2 mr-10">
                     <div id="1">
                     </div>
                     <div id="2">
                     </div>
                     <div id="3">
                     </div>
+                </div>
+                <div class="flex mt-5">
+                    <p id="spectext" class="text-white mb-5 font-medium"></p>
+                </div>
+                <div id="special" class="flex grid grid-cols-3 gap-2 mr-10">
                 </div>
             </div>
             <div class="flex flex-col ml-3">
@@ -132,37 +137,45 @@
                 , $.getJSON(species)
             ).done(function(result1, result2) {
                 $.getJSON(result2[0].evolution_chain.url, data => {
-                    let evo1 = data.chain.species.name;
-                    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo1}/`, data => {
+                    let url1 = data.chain.species.url;
+                    let id1 = url1.split('/')[6];
+                    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${id1}/`, data => {
                         evodiv = document.getElementById('1');
                         var divevo = document.createElement("div");
                         divevo.classList.add("evo");
                         var imgevo = document.createElement("img");
-                        imgevo.src = data.sprites.front_default;
+                        if (data.sprites.front_default) {
+                            imgevo.src = data.sprites.front_default;
+                        } else {
+                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id1}.png`;
+                        }
+                        var aTag = document.createElement('a');
+                        aTag.setAttribute('href', '/' + id1);
                         evodiv.appendChild(divevo);
-                        divevo.appendChild(imgevo);
-                        divevo.onclick = function() {
-                            location.href = '{{ env('
-                            url ') }}' + evo1;
-                        };
+                        divevo.appendChild(aTag);
+                        aTag.appendChild(imgevo);
                     });
 
                     if (data.chain.evolves_to.length > 0) {
                         let evo2 = data.chain.evolves_to;
                         evo2.forEach(element => {
-                            let evo2 = element.species.name;
-                            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo2}/`, data => {
+                            let url2 = element.species.url;
+                            let id2 = url2.split('/')[6];
+                            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${id2}/`, data => {
                                 evodiv = document.getElementById('2');
                                 var divevo = document.createElement("div");
                                 divevo.classList.add("evo");
                                 var imgevo = document.createElement("img");
-                                imgevo.src = data.sprites.front_default;
+                                if (data.sprites.front_default) {
+                                    imgevo.src = data.sprites.front_default;
+                                } else {
+                                    imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id2}.png`;
+                                }
+                                var aTag = document.createElement('a');
+                                aTag.setAttribute('href', '/' + id2);
                                 evodiv.appendChild(divevo);
-                                divevo.appendChild(imgevo);
-                                divevo.onclick = function() {
-                                    location.href = '{{ env('
-                                    url ') }}' + evo2;
-                                };
+                                divevo.appendChild(aTag);
+                                aTag.appendChild(imgevo);
                             });
                         });
 
@@ -171,24 +184,54 @@
                             evo3.forEach(element => {
                                 let evoevo3 = evo3[0].evolves_to;
                                 evoevo3.forEach(element => {
-                                    let evo3name = element.species.name;
-                                    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo3name}/`, data => {
+                                    let url3 = element.species.url;
+                                    let id3 = url3.split('/')[6];
+                                    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${id3}/`, data => {
                                         evodiv = document.getElementById('3');
                                         var divevo = document.createElement("div");
                                         divevo.classList.add("evo");
                                         var imgevo = document.createElement("img");
-                                        imgevo.src = data.sprites.front_default;
+                                        if (data.sprites.front_default) {
+                                            imgevo.src = data.sprites.front_default;
+                                        } else {
+                                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id3}.png`;
+                                        }
+                                        var aTag = document.createElement('a');
+                                        aTag.setAttribute('href', '/' + id3);
                                         evodiv.appendChild(divevo);
-                                        divevo.appendChild(imgevo);
-                                        divevo.onclick = function() {
-                                            location.href = '{{ env('
-                                            url ') }}' + evo3name;
-                                        };
+                                        divevo.appendChild(aTag);
+                                        aTag.appendChild(imgevo);
                                     });
                                 })
                             })
                         }
                     }
+
+                    $.getJSON(species, data => {
+                        let varieties = data.varieties;
+                        var varietiessnipped = varieties.slice(1);
+                        varietiessnipped.forEach(element => {
+                            let urls = element.pokemon.url;
+                            let ids = urls.split('/')[6];
+                            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${ids}/`, data => {
+                                evodiv = document.getElementById('special');
+                                var divevo = document.createElement("div");
+                                divevo.classList.add("evo");
+                                var imgevo = document.createElement("img");
+                                if (data.sprites.front_default) {
+                                    imgevo.src = data.sprites.front_default;
+                                } else {
+                                    imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
+                                }
+                                var aTag = document.createElement('a');
+                                aTag.setAttribute('href', '/' + ids);
+                                evodiv.appendChild(divevo);
+                                divevo.appendChild(aTag);
+                                aTag.appendChild(imgevo);
+                                document.getElementById('spectext').innerHTML = 'VARIETIES';
+                            });
+                        });
+                    });
 
                     const type1 = document.createElement('div');
                     type1.classList.add("typecolor");
@@ -279,7 +322,20 @@
                         document.getElementById('types').append(type2)
                     }
 
-                    imggg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result1[0].id}.png`
+
+                    var request;
+                    if (window.XMLHttpRequest)
+                        request = new XMLHttpRequest();
+                    else
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
+                    request.open('GET', `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result1[0].id}.png`, false);
+                    request.send();
+                    if (request.status === 404) {
+                        imggg = result1[0].sprites.front_default;
+                    } else {
+                        imggg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result1[0].id}.png`;
+                    }
+
                     document.getElementById('img').src = imggg;
                     document.getElementById('img').crossOrigin = "anonymous";
                     document.getElementById('name').innerText = result1[0].name[0].toUpperCase() + result1[0].name.slice(1);
@@ -373,16 +429,19 @@
                     }
 
                     const image = document.querySelector("img")
-                    image.onload = () => {
-                        const {
-                            R
-                            , G
-                            , B
-                        } = getAverageColor(image, 4)
+                    const src = image.getAttribute('src');
+                    if (src == "null") {
+                        document.body.style.background = "#222"
+                    } else {
+                        image.onload = () => {
+                            const {
+                                R
+                                , G
+                                , B
+                            } = getAverageColor(image, 4)
 
-                        document.body.style.background = `rgb(${R}, ${G},${B})`
-                        // document.body.style.background = `radial-gradient(rgb(${R}, ${G},${B}), #fff)`
-
+                            document.body.style.background = `rgb(${R}, ${G},${B})`
+                        }
                     }
                 });
             });
