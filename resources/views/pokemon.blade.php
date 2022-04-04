@@ -87,15 +87,6 @@
                     <p class="text-white mb-5 font-medium">EVOLUTION</p>
                 </div>
                 <div id="evo" class="flex grid grid-cols-3 gap-2 mr-14 ">
-                    {{-- <div class="border-none rounded-full bg-gray-100 mr-2">
-                        <img id="evo1img" src="" alt="">
-                    </div>
-                    <div class="border-none rounded-full bg-gray-100 mr-2">
-                        <img id="evo2img" src="" alt="">
-                    </div>
-                    <div class="border-none rounded-full bg-gray-100 mr-2">
-                        <img id="evo3img" src="" alt="">
-                    </div> --}}
                 </div>
             </div>
             <div class="flex flex-col ml-3">
@@ -155,7 +146,6 @@
 
                         evo2.forEach(element => {
                             let evo2 = element.species.name;
-                            console.log(element.species);
                             $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo2}/`, data => {
                                 var divevo = document.createElement("div");
                                 divevo.classList.add("evo");
@@ -173,7 +163,6 @@
                         if (data.chain.evolves_to[0].evolves_to[0]) {
                             let evo3 = data.chain.evolves_to;
                             evo3.forEach(element => {
-                                console.log(evo3[0].evolves_to);
                                 let evoevo3 = evo3[0].evolves_to;
                                 evoevo3.forEach(element => {
                                     let evo3name = element.species.name;
@@ -193,7 +182,6 @@
                             })
                         }
                     }
-
 
                     const type1 = document.createElement('div');
                     type1.classList.add("typecolor");
