@@ -67,6 +67,8 @@
     max-width: 100px;
     border-radius: 200px;
     background-color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .cont {

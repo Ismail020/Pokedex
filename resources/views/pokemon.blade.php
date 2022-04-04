@@ -86,11 +86,17 @@
                 <div class="flex ">
                     <p class="text-white mb-5 font-medium">EVOLUTION</p>
                 </div>
-                <div id="evo" class="flex grid grid-cols-3 gap-2 mr-14 ">
+                <div id="evo" class="flex grid grid-cols-3 gap-2">
+                    <div id="1">
+                    </div>
+                    <div id="2">
+                    </div>
+                    <div id="3">
+                    </div>
                 </div>
             </div>
             <div class="flex flex-col ml-3">
-                <div class="">
+                <div>
                     <p class="text-white mb-5 font-medium">ABILITIES</p>
                 </div>
                 <div id="abilities" class="flex flex-col text-sm font-light">
@@ -126,9 +132,9 @@
                 , $.getJSON(species)
             ).done(function(result1, result2) {
                 $.getJSON(result2[0].evolution_chain.url, data => {
-                    evodiv = document.getElementById('evo');
                     let evo1 = data.chain.species.name;
                     $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo1}/`, data => {
+                        evodiv = document.getElementById('1');
                         var divevo = document.createElement("div");
                         divevo.classList.add("evo");
                         var imgevo = document.createElement("img");
@@ -143,10 +149,10 @@
 
                     if (data.chain.evolves_to.length > 0) {
                         let evo2 = data.chain.evolves_to;
-
                         evo2.forEach(element => {
                             let evo2 = element.species.name;
                             $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo2}/`, data => {
+                                evodiv = document.getElementById('2');
                                 var divevo = document.createElement("div");
                                 divevo.classList.add("evo");
                                 var imgevo = document.createElement("img");
@@ -167,6 +173,7 @@
                                 evoevo3.forEach(element => {
                                     let evo3name = element.species.name;
                                     $.getJSON(`https://pokeapi.co/api/v2/pokemon/${evo3name}/`, data => {
+                                        evodiv = document.getElementById('3');
                                         var divevo = document.createElement("div");
                                         divevo.classList.add("evo");
                                         var imgevo = document.createElement("img");
