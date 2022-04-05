@@ -1,10 +1,21 @@
 <x-layout>
-    <div class="container">
-        <div id="left" class="flex inline-flex">
-            
+    <div id="hidden" class="container mx-auto hidden">
+        <div class="flex justify-center gird grid-cols-2">
+
+            <div class="mt-auto mb-auto">
+                <p>Pokemon not found!</p>
+            </div>
+            <div>
+                <img src="/img/404/psy.png" alt="">
+            </div>
         </div>
     </div>
-    <div class="container mx-auto sm:px-6 lg:px-28">
+    <div id="nav" class="container">
+        <div id="left" class="flex inline-flex">
+
+        </div>
+    </div>
+    <div id="all" class="container mx-auto sm:px-6 lg:px-28">
         <div class=" drop-shadow-2xl rounded grid grid-cols-2">
             <div class="flex justify-start">
                 <img class="object-contain w-96 z-50" id="img" src="" alt="">
@@ -119,7 +130,7 @@
                 <div class="flex flex-row grid-cols-4 gap-2">
                     <div id="prev" class="flex inline-flex">
                     </div>
-    
+
                     <div id="next" class="flex inline-flex">
                     </div>
                 </div>
@@ -147,6 +158,21 @@
 
             await $.getJSON(url, data => {
                 species = data.species.url;
+            }).fail(function(jqXHR) {
+                if (jqXHR.status == 404) {
+                    var all = document.getElementById('all');
+                    all.style.display = "none";
+                    var nav = document.getElementById('nav');
+                    nav.style.display = "none";
+                    var hidden = document.getElementById('hidden');
+                    hidden.style.display = "block";
+
+                } else {
+                    var all = document.getElementById('all');
+                    all.style.display = "none";
+                    var nav = document.getElementById('nav');
+                    nav.style.display = "none";
+                }
             });
 
             await $.when(
