@@ -10,9 +10,50 @@
             </div>
         </div>
     </div>
-    <div id="nav" class="container">
+    <div id="nav" class="grid grid-cols-2">
         <div id="left" class="flex inline-flex">
 
+        </div>
+        <div class="randomm flex inline-flex">
+            <form>
+                <div class="flex justify-center">
+                    <div class="xl:w-52" x-data="{
+                        query: '',
+                        allurl: '',
+                        allnames: '',
+                        
+                        init () {
+                            this.allurl = `https://pokeapi.co/api/v2/pokemon/?limit=1126`
+            
+                            $.getJSON(this.allurl, data => {
+                                this.allnames = data.results;
+                            });
+                        }
+                    }">
+                        <input list="pokemon" type="search" class="
+                          form-control
+                          block
+                          w-full
+                          px-3
+                          py-1.5
+                          text-base
+                          font-normal
+                          text-gray-400 
+                          border  border-white
+                          rounded-3xl  
+                          transition
+                          ease-in-out
+                          outline-none 
+                          m-0
+                        " id="exampleSearch" placeholder="Search..."/>
+                        <datalist id="pokemon">
+                            <template x-for="name in allnames">
+                                <option x-bind:value="name.name">
+                            </template>
+                        </datalist>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div id="all" class="container mx-auto sm:px-6 lg:px-28">
@@ -431,6 +472,14 @@
                     document.getElementById('speed').innerText = result1[0].stats[5].base_stat;
                     document.getElementById('total').innerText = result1[0].stats.reduce((a, b) => a + b.base_stat, 0);
 
+                    $('form').on('submit', redirect);
+
+                    function redirect(e) {
+                        e.preventDefault();
+                        var goto = document.getElementById("exampleSearch").value;
+                        console.log(goto);
+                        window.location.href = "/" + goto;
+                    }
 
                     $.getJSON(`https://pokeapi.co/api/v2/pokemon/${result1[0].id - 1}/`, data => {
                         var prevdiv = document.getElementById('prev');
