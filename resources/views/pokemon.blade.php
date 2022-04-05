@@ -1,4 +1,9 @@
 <x-layout>
+    <div class="container">
+        <div id="left" class="flex inline-flex">
+            
+        </div>
+    </div>
     <div class="container mx-auto sm:px-6 lg:px-28">
         <div class=" drop-shadow-2xl rounded grid grid-cols-2">
             <div class="flex justify-start">
@@ -104,7 +109,19 @@
                 <div>
                     <p class="text-white mb-5 font-medium">ABILITIES</p>
                 </div>
-                <div id="abilities" class="flex flex-col text-sm font-light">
+                <div id="abilities" class="flex flex-col text-sm font-light mr-10">
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <div>
+                    <p class="text-white mb-5 font-medium">PREVIOUS / NEXT</p>
+                </div>
+                <div class="flex flex-row grid-cols-4 gap-2">
+                    <div id="prev" class="flex inline-flex">
+                    </div>
+    
+                    <div id="next" class="flex inline-flex">
+                    </div>
                 </div>
             </div>
         </div>
@@ -220,6 +237,8 @@
                                 var imgevo = document.createElement("img");
                                 if (data.sprites.front_default) {
                                     imgevo.src = data.sprites.front_default;
+                                } else if (data.sprites.other.home.front_default) {
+                                    imgevo.src = data.sprites.other.home.front_default
                                 } else {
                                     imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
                                 }
@@ -331,10 +350,29 @@
                     request.open('GET', `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result1[0].id}.png`, false);
                     request.send();
                     if (request.status === 404) {
-                        imggg = result1[0].sprites.front_default;
+                        if (result1[0].sprites.front_default) {
+                            imggg = result1[0].sprites.front_default
+                        } else if (result1[0].sprites.other.home.front_default) {
+                            imggg = result1[0].sprites.other.home.front_default
+                        }
                     } else {
                         imggg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result1[0].id}.png`;
                     }
+
+                    function randomIntFromInterval(min, max) { // min and max included 
+                        return Math.floor(Math.random() * (max - min + 1) + min)
+                    }
+                    const rndInt = randomIntFromInterval(1, 898)
+
+                    var aRandom = document.createElement('a');
+                    aRandom.setAttribute('href', '/' + rndInt);
+                    var left = document.getElementById('left');
+                    var poke = document.createElement("img");
+                    poke.src = "/img/loader/master.webp";
+                    poke.classList.add("random");
+                    left.appendChild(aRandom);
+                    aRandom.appendChild(poke);
+
 
                     document.getElementById('img').src = imggg;
                     document.getElementById('img').crossOrigin = "anonymous";
@@ -350,6 +388,66 @@
                     document.getElementById('sp_defense').innerText = result1[0].stats[4].base_stat;
                     document.getElementById('speed').innerText = result1[0].stats[5].base_stat;
                     document.getElementById('total').innerText = result1[0].stats.reduce((a, b) => a + b.base_stat, 0);
+
+
+                    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${result1[0].id - 1}/`, data => {
+                        var prevdiv = document.getElementById('prev');
+                        var divevo = document.createElement("div");
+                        var arrowevo = document.createElement("img");
+                        divevo.classList.add("evo");
+                        var imgevo = document.createElement("img");
+                        if (data.sprites.front_default) {
+                            imgevo.src = data.sprites.front_default;
+                            arrowevo.src = "img/arrowleft.svg";
+                            arrowevo.classList.add("posleft");
+                        } else if (data.sprites.other.home.front_default) {
+                            imgevo.src = data.sprites.other.home.front_default
+                            arrowevo.src = "img/arrowleft.svg";
+                            arrowevo.classList.add("posleft");
+                        } else {
+                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`;
+                            arrowevo.src = "img/arrowleft.svg";
+                            arrowevo.classList.add("posleft");
+                        }
+                        var aTag = document.createElement('a');
+                        aTag.classList.add("test");
+                        aTag.setAttribute('href', '/' + data.id);
+                        prevdiv.appendChild(divevo);
+                        divevo.appendChild(aTag);
+                        aTag.appendChild(arrowevo);
+                        aTag.appendChild(imgevo);
+                    })
+
+
+                    $.getJSON(`https://pokeapi.co/api/v2/pokemon/${result1[0].id + 1}/`, data => {
+                        var nextdiv = document.getElementById('next');
+                        var divevo = document.createElement("div");
+                        var arrowevo = document.createElement("img");
+                        divevo.classList.add("evo");
+                        var imgevo = document.createElement("img");
+                        if (data.sprites.front_default) {
+                            imgevo.src = data.sprites.front_default;
+                            arrowevo.src = "img/arrowright.svg";
+                            arrowevo.classList.add("posright");
+                        } else if (data.sprites.other.home.front_default) {
+                            imgevo.src = data.sprites.other.home.front_default
+                            arrowevo.src = "img/arrowright.svg";
+                            arrowevo.classList.add("posright");
+                        } else {
+                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`;
+                            arrowevo.src = "img/arrowright.svg";
+                            arrowevo.classList.add("posright");
+                        }
+                        var aTag = document.createElement('a');
+                        aTag.classList.add("test");
+                        aTag.setAttribute('href', '/' + data.id);
+                        nextdiv.appendChild(divevo);
+                        divevo.appendChild(aTag);
+                        aTag.appendChild(imgevo);
+                        aTag.appendChild(arrowevo);
+                    });
+
+
 
                     info = result2[0].flavor_text_entries;
                     info.forEach(element => {
@@ -428,7 +526,7 @@
                         }
                     }
 
-                    const image = document.querySelector("img")
+                    const image = document.getElementById("img")
                     const src = image.getAttribute('src');
                     if (src == "null") {
                         document.body.style.background = "#222"
