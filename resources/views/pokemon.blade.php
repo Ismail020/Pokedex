@@ -189,8 +189,12 @@
                         var imgevo = document.createElement("img");
                         if (data.sprites.front_default) {
                             imgevo.src = data.sprites.front_default;
+                        } else if (data.sprites.other.home.front_default) {
+                            imgevo.src = data.sprites.other.home.front_default
+                        } else if (data.sprites.other[data.sprites.other.length - 1]) {
+                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
                         } else {
-                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id1}.png`;
+                            imgevo.src = "/img/404/sad.png"
                         }
                         var aTag = document.createElement('a');
                         aTag.setAttribute('href', '/' + id1);
@@ -211,8 +215,12 @@
                                 var imgevo = document.createElement("img");
                                 if (data.sprites.front_default) {
                                     imgevo.src = data.sprites.front_default;
+                                } else if (data.sprites.other.home.front_default) {
+                                    imgevo.src = data.sprites.other.home.front_default
+                                } else if (data.sprites.other[data.sprites.other.length - 1]) {
+                                    imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
                                 } else {
-                                    imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id2}.png`;
+                                    imgevo.src = "/img/404/sad.png"
                                 }
                                 var aTag = document.createElement('a');
                                 aTag.setAttribute('href', '/' + id2);
@@ -236,8 +244,12 @@
                                         var imgevo = document.createElement("img");
                                         if (data.sprites.front_default) {
                                             imgevo.src = data.sprites.front_default;
+                                        } else if (data.sprites.other.home.front_default) {
+                                            imgevo.src = data.sprites.other.home.front_default
+                                        } else if (data.sprites.other[data.sprites.other.length - 1]) {
+                                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
                                         } else {
-                                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id3}.png`;
+                                            imgevo.src = "/img/404/sad.png"
                                         }
                                         var aTag = document.createElement('a');
                                         aTag.setAttribute('href', '/' + id3);
@@ -265,8 +277,10 @@
                                     imgevo.src = data.sprites.front_default;
                                 } else if (data.sprites.other.home.front_default) {
                                     imgevo.src = data.sprites.other.home.front_default
-                                } else {
+                                } else if (data.sprites.other[data.sprites.other.length - 1]) {
                                     imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
+                                } else {
+                                    imgevo.src = "/img/404/sad.png"
                                 }
                                 var aTag = document.createElement('a');
                                 aTag.setAttribute('href', '/' + ids);
@@ -380,6 +394,8 @@
                             imggg = result1[0].sprites.front_default
                         } else if (result1[0].sprites.other.home.front_default) {
                             imggg = result1[0].sprites.other.home.front_default
+                        } else {
+                            imggg = "/img/404/sad.png"
                         }
                     } else {
                         imggg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${result1[0].id}.png`;
@@ -430,8 +446,12 @@
                             imgevo.src = data.sprites.other.home.front_default
                             arrowevo.src = "img/arrowleft.svg";
                             arrowevo.classList.add("posleft");
-                        } else {
+                        } else if (data.sprites.other[data.sprites.other.length - 1]) {
                             imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`;
+                            arrowevo.src = "img/arrowleft.svg";
+                            arrowevo.classList.add("posleft");
+                        } else {
+                            imgevo.src = "/img/404/sad.png"
                             arrowevo.src = "img/arrowleft.svg";
                             arrowevo.classList.add("posleft");
                         }
@@ -459,8 +479,12 @@
                             imgevo.src = data.sprites.other.home.front_default
                             arrowevo.src = "img/arrowright.svg";
                             arrowevo.classList.add("posright");
-                        } else {
+                        } else if (data.sprites.other[data.sprites.other.length - 1]) {
                             imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`;
+                            arrowevo.src = "img/arrowright.svg";
+                            arrowevo.classList.add("posright");
+                        } else {
+                            imgevo.src = "/img/404/sad.png"
                             arrowevo.src = "img/arrowright.svg";
                             arrowevo.classList.add("posright");
                         }
