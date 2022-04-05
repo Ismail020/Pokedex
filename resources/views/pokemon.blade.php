@@ -14,8 +14,8 @@
         <div id="left" class="flex inline-flex">
 
         </div>
-        <div class="randomm flex inline-flex">
-            <form>
+        <div class=" flex inline-flex nav">
+            <form class="flex inline-flex randomm">
                 <div class="flex justify-center">
                     <div class="xl:w-52" x-data="{
                         query: '',
@@ -45,7 +45,7 @@
                           ease-in-out
                           outline-none 
                           m-0
-                        " id="exampleSearch" placeholder="Search..."/>
+                        " id="exampleSearch" placeholder="Search..." />
                         <datalist id="pokemon">
                             <template x-for="name in allnames">
                                 <option x-bind:value="name.name">
@@ -157,14 +157,14 @@
                 <div id="special" class="flex grid grid-cols-3 gap-2 mr-10">
                 </div>
             </div>
-            <div class="flex flex-col ml-3">
+            <div class="flex flex-col ml-3 ml-auto mr-auto">
                 <div>
                     <p class="text-white mb-5 font-medium">ABILITIES</p>
                 </div>
                 <div id="abilities" class="flex flex-col text-sm font-light mr-10">
                 </div>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col ml-auto mr-auto">
                 <div>
                     <p class="text-white mb-5 font-medium">PREVIOUS / NEXT</p>
                 </div>
