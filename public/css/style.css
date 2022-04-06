@@ -1,7 +1,9 @@
 .type {
-    margin: -20px 0px 6px 30px;
+    margin: -40px 0px 0px 0px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .typecolor {
@@ -16,14 +18,12 @@
 }
 
 .typecolorall {
-    margin-right: 5px;
-    width: 70px;
-    text-align: center;
-    font-size: small;
-    padding: 0px;
-    border: thin solid black;
-    border-radius: 10px;
-    border-color: transparent;
+    width: 55px;
+}
+
+.typecolorall2 {
+    width: 55px;
+    margin-left: 2px;
 }
 
 /* body {

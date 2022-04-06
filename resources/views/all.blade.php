@@ -1,7 +1,7 @@
 <x-layout>
     <div class="flex justify-center flex-col">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div id="poke_container" class="flex grid md:grid-cols-4 lg:grid-cols-5 gap-4 sm:grid-cols-1">
+            <div id="poke_container" class="flex grid md2:grid-cols-4 lg2:grid-cols-5 gap-3 sm3:grid-cols-3 sm2:grid-cols-2 sm:grid-cols-1">
 
             </div>
         </div>
@@ -47,85 +47,109 @@
 
             function createTypes(types, ul) {
                 const type1 = document.createElement('p');
-                const type2 = document.createElement('p');
 
                 type1.classList.add("typecolorall");
-                type2.classList.add("typecolorall");
-
-                type1.innerText = types[0]['type']['name'];
 
                 function typecolor(x, y) {
                     if (pokemon.types[x].type.name == 'fire') {
-                        y.style.backgroundColor = "#fd7d24"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/fire.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'grass') {
-                        y.style.backgroundColor = "#78c850"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/grass.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'water') {
-                        y.style.backgroundColor = "#4592c4"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/water.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'bug') {
-                        y.style.backgroundColor = "#a8b820"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/bug.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'normal') {
-                        y.style.backgroundColor = "#a4acaf"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/normal.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'electric') {
-                        y.style.backgroundColor = "#f8d030"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/electric.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'ice') {
-                        y.style.backgroundColor = "#98d8d8"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/ice.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'fighting') {
-                        y.style.backgroundColor = "#d56723"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/fighting.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'poison') {
-                        y.style.backgroundColor = "#a040a0"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/poison.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'ground') {
-                        y.style.backgroundColor = "#e0c068"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/ground.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'flying') {
-                        y.style.backgroundColor = "#3dc7ef"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/flying.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'psychic') {
-                        y.style.backgroundColor = "#f85888"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/psychic.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'rock') {
-                        y.style.backgroundColor = "#b8a038"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/rock.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'ghost') {
-                        y.style.backgroundColor = "#705898"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/ghost.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'dark') {
-                        y.style.backgroundColor = "#707070"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/dark.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'dragon') {
-                        y.style.backgroundColor = "#7038f8"
-                        y.style.color = "white";
+                        var img = document.createElement("img");
+                        img.src = '/img/box/dragon.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'steel') {
-                        y.style.backgroundColor = "#b8b8d0"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/steel.svg';
+                        y.appendChild(img);
                     } else if (pokemon.types[x].type.name == 'fairy') {
-                        y.style.backgroundColor = "#f0b6bc"
+                        var img = document.createElement("img");
+                        img.src = '/img/box/fairy.svg';
+                        y.appendChild(img);
                     }
                 }
 
                 typecolor(0, type1);
+                ul.append(type1)
 
                 if (types[1]) {
+                    const type2 = document.createElement('p');
+                    type2.classList.add("typecolorall2");
                     typecolor(1, type2);
-                    type2.innerText = types[1]['type']['name'];
+                    ul.append(type2)
                 }
 
-                ul.append(type1)
-                ul.append(type2)
             }
 
             const pokeInnerHTML = `
             <a href="/${pokemon.id}">
-                <div>
+                <div class="bg-white mt-20 border-none rounded-2xl shadow-lg min-w-52 w-52 max-w-52 h-36 ">
                     <div class="img-container p-6">
                         <div>
-                            <img class="rounded w-96 bg-gray-300 " src="${pokemon.sprites.other.home.front_default}" />
-                            <span class="text-gray-500 ml-2 text-sm">Nr.${pokemon.id.toString().padStart(3, '0')}</span>
+                            <img class="rounded -mt-24 mx-auto w-24 " src="${pokemon.sprites.other.home.front_default}" />
                         </div>
                     </div>
-                    <div class="text-left -mt-5 pb-5 ml-8">
-                        <h3 id="test" class="font-medium text-lg">${name}</h3>
+                    <div class="flex flex-col">
+                        <span class="text-gray-500 text-sm mx-auto">N°${pokemon.id.toString().padStart(3, '0')}</span>
+                        <h3 id="test" class="font-medium text-lg mx-auto">${name}</h3>
+                        
                     </div>
                 </div>
             </a>
