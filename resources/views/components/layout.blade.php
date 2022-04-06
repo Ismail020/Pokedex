@@ -150,7 +150,18 @@
     </div>
 
     <div class="flex justify-center flex-col">
-            {{ $slot }}
+        {{ $slot }}
     </div>
+
+    <script>
+        $('form').on('submit', redirect);
+
+        function redirect(e) {
+            e.preventDefault();
+            var goto = document.getElementById("exampleSearch").value;
+            console.log(goto);
+            window.location.href = "/" + goto;
+        }
+    </script>
 </body>
 </html>

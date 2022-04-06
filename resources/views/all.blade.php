@@ -1,6 +1,58 @@
 <x-layout>
     <div class="flex justify-center flex-col">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div id="nav">
+                <div class=" flex inline-flex nav ">
+                    <div x-data="{ open: false }" class="relative inline-block text-left mr-5 z-50 ">
+                        <div>
+                            <button x-on:click="open = ! open" class="inline-flex justify-center w-full rounded-md border border-white rounded-3xl shadow-lg px-4 py-2 bg-white text-sm font-medium text-gray-400 hover:bg-gray-50 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                Generations
+                                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div x-show="open" x-transition @click.away="open = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                            <div class="py-1" role="none">
+                                <button id="gen1" value="1" data-value="151" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen1')" x-on:click="open = false" id="menu-item-0">Gen I 001/151</button>
+                                <button id="gen2" value="152" data-value="100" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen2')" x-on:click="open = false" id="menu-item-1">Gen II 152/251</button>
+                                <button id="gen3" value="252" data-value="135" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen3')" x-on:click="open = false" id="menu-item-2">Gen III 252/386</button>
+                                <button id="gen4" value="387" data-value="107" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen4')" x-on:click="open = false" id="menu-item-2">Gen IV 387/493</button>
+                                <button id="gen5" value="494" data-value="156" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen5')" x-on:click="open = false" id="menu-item-2">Gen V 494/649</button>
+                                <button id="gen6" value="650" data-value="72" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen6')" x-on:click="open = false" id="menu-item-2">Gen VI 650/721</button>
+                                <button id="gen7" value="722" data-value="88" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen7')" x-on:click="open = false" id="menu-item-2">Gen VII 722/809</button>
+                                <button id="gen8" value="810" data-value="89" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen8')" x-on:click="open = false" id="menu-item-2">Gen VIII 810/898</button>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="randomm1">
+                        <div x-data="{
+                                query: '',
+                                allurl: '',
+                                allnames: '',
+                                
+                                init () {
+                                    this.allurl = `https://pokeapi.co/api/v2/pokemon/?limit=1126`
+                    
+                                    $.getJSON(this.allurl, data => {
+                                        this.allnames = data.results;
+                                    });
+                                }
+                            }">
+                            <input list="pokemon" type="search" class="block max-w-[150px]  px-3 py-1.5 text-base  text-gray-400 border border-white rounded-3xl transition ease-in-out outline-none m-0 shadow-lg" id="exampleSearch" placeholder="Search..." />
+                            <datalist id="pokemon">
+                                <template x-for="name in allnames">
+                                    <option x-bind:value="name.name">
+                                </template>
+                            </datalist>
+                        </div>
+                    </form>
+                    <div id="left" class="flex inline-flex">
+
+                    </div>
+                </div>
+            </div>
             <div id="poke_container" class="flex grid md2:grid-cols-4 lg2:grid-cols-5 gap-3 sm3:grid-cols-3 sm2:grid-cols-2 sm:grid-cols-1">
 
             </div>
@@ -9,23 +61,70 @@
             <button id="more" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#2a75bb] hover:bg-[#1c4e7d] focus:outline-none">Load more</button>
         </div>
     </div>
-
     <script>
+        function randomIntFromInterval(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+        const rndInt = randomIntFromInterval(1, 898)
+
+        var aRandom = document.createElement('a');
+        aRandom.setAttribute('href', '/' + rndInt);
+        var left = document.getElementById('left');
+        var poke = document.createElement("img");
+        poke.src = "/img/loader/master.webp";
+        poke.classList.add("random1");
+        left.appendChild(aRandom);
+        aRandom.appendChild(poke);
+
         const poke_container = document.getElementById('poke_container');
         const more = document.querySelector("#more");
         let pokemons_number = 20;
+
+        function gen(y) {
+            var value = document.getElementById(y);
+            limit = value.getAttribute("data-value");
+            offset = value.value;
+            removeChildNodes(poke_container);
+            check = true;
+            fetchPokemonss();
+        }
+
+        var check = false;
+
+
+        function removeChildNodes(parent) {
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+        }
 
         let limit = 19;
         let offset = 1;
 
         more.addEventListener("click", () => {
-            offset += 20;
-            fetchPokemons(offset, limit);
+            if (check == true) {
+                removeChildNodes(poke_container);
+                limit = 19;
+                offset = 1;
+                check = false;
+                fetchPokemons(offset, limit);
+            } else {
+                offset += 20;
+                fetchPokemons(offset, limit);
+            }
+
         });
 
         const fetchPokemons = async () => {
             for (let i = offset; i <= offset + limit; i++) {
                 await getPokemon(i);
+            }
+        };
+
+        const fetchPokemonss = async () => {
+            for (let i = 1; i <= limit; offset++) {
+                i++;
+                await getPokemon(offset);
             }
         };
 

@@ -174,27 +174,43 @@
     margin-right: -15px;
 }
 
-.random {
-    width: 40px;
-    height: 40px;
-    z-index: 100;
-    margin-top: -130px;
-    margin-left: 50px;
-}
-
 .nav {
     display: flex;
     justify-content: end;
 }
 
+.random {
+    margin-top: -110px;
+    width: 40px;
+    height: 40px;
+    z-index: 100;
+}
+
 .randomm {
-    margin-top: -130px;
+    margin-top: -110px;
     display: flex;
     justify-content: end;
-    margin-right: 50px;
+    margin-right: 20px;
+}
+
+.random1 {
+    width: 40px;
+    height: 40px;
+    z-index: 100;
+}
+
+.randomm1 {
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
 }
 
 .random:hover {
+    cursor: pointer;
+    animation: shake 1s ease-in-out;
+}
+
+.random1:hover {
     cursor: pointer;
     animation: shake 1s ease-in-out;
 }
