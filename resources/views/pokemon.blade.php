@@ -151,10 +151,15 @@
                     <div id="3">
                     </div>
                 </div>
-                <div class="flex mt-5">
+                <div id="specialdiv" class="flex mt-5">
                     <p id="spectext" class="text-white mb-5 font-medium"></p>
                 </div>
                 <div id="special" class="flex grid grid-cols-3 gap-2 mr-10">
+                </div>
+                <div class="flex mt-5">
+                    <p id="shinytext" class="text-white mb-5 font-medium"></p>
+                </div>
+                <div id="shiny" class="flex grid grid-cols-3 gap-2 mr-10">
                 </div>
             </div>
             <div class="flex flex-col ml-3 ml-auto mr-auto">
@@ -305,33 +310,50 @@
 
                     $.getJSON(species, data => {
                         let varieties = data.varieties;
-                        var varietiessnipped = varieties.slice(1);
-                        varietiessnipped.forEach(element => {
-                            let urls = element.pokemon.url;
-                            let ids = urls.split('/')[6];
-                            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${ids}/`, data => {
-                                evodiv = document.getElementById('special');
-                                var divevo = document.createElement("div");
-                                divevo.classList.add("evo");
-                                var imgevo = document.createElement("img");
-                                if (data.sprites.front_default) {
-                                    imgevo.src = data.sprites.front_default;
-                                } else if (data.sprites.other.home.front_default) {
-                                    imgevo.src = data.sprites.other.home.front_default
-                                } else if (data.sprites.other[data.sprites.other.length - 1]) {
-                                    imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
-                                } else {
-                                    imgevo.src = "/img/404/sad.png"
-                                }
-                                var aTag = document.createElement('a');
-                                aTag.setAttribute('href', '/' + ids);
-                                evodiv.appendChild(divevo);
-                                divevo.appendChild(aTag);
-                                aTag.appendChild(imgevo);
-                                document.getElementById('spectext').innerHTML = 'VARIETIES';
+                        if (varieties.length >= 2) {
+                            var varietiessnipped = varieties.slice(1);
+                            varietiessnipped.forEach(element => {
+                                let urls = element.pokemon.url;
+                                let ids = urls.split('/')[6];
+                                $.getJSON(`https://pokeapi.co/api/v2/pokemon/${ids}/`, data => {
+                                    evodiv = document.getElementById('special');
+                                    var divevo = document.createElement("div");
+                                    divevo.classList.add("evo");
+                                    var imgevo = document.createElement("img");
+                                    if (data.sprites.front_default) {
+                                        imgevo.src = data.sprites.front_default;
+                                    } else if (data.sprites.other.home.front_default) {
+                                        imgevo.src = data.sprites.other.home.front_default
+                                    } else if (data.sprites.other[data.sprites.other.length - 1]) {
+                                        imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
+                                    } else {
+                                        imgevo.src = "/img/404/sad.png"
+                                    }
+                                    var aTag = document.createElement('a');
+                                    aTag.setAttribute('href', '/' + ids);
+                                    evodiv.appendChild(divevo);
+                                    divevo.appendChild(aTag);
+                                    aTag.appendChild(imgevo);
+                                    document.getElementById('spectext').innerHTML = 'VARIETIES';
+                                });
                             });
-                        });
+                        } else {
+                            document.getElementById('special').style.display = 'none';
+                            document.getElementById('specialdiv').style.display = 'none';
+                        }
                     });
+
+                    if (result1[0].sprites.front_shiny) {
+                        let shinyurl = result1[0].sprites.front_shiny;
+                        shinydiv = document.getElementById('shiny');
+                        var divshiny = document.createElement("div");
+                        divshiny.classList.add("evo");
+                        var imgshiny = document.createElement("img");
+                        imgshiny.src = result1[0].sprites.front_shiny;
+                        shinydiv.appendChild(divshiny);
+                        divshiny.appendChild(imgshiny);
+                        document.getElementById('shinytext').innerHTML = 'SHINY';
+                    }
 
                     const type1 = document.createElement('div');
                     type1.classList.add("typecolor");
