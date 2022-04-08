@@ -57,8 +57,15 @@
 
             </div>
         </div>
-        <div class="mb-32 mt-10 mx-auto">
-            <button id="more" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#2a75bb] hover:bg-[#1c4e7d] focus:outline-none">Load more</button>
+        <div id="buttonmore" class="mb-32 mt-10 mx-auto">
+            <div class="grid gap-8 items-start justify-center">
+                <div class="relative group">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-yellow-400  rounded-lg blur opacity-75"></div>
+                    <button id="more" class="relative px-7 py-4 bg-white rounded-lg leading-none flex items-center divide-x divide-gray-600">
+                        <span class="text-black">Load more</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -81,6 +88,8 @@
         let pokemons_number = 20;
 
         function gen(y) {
+            document.getElementById("buttonmore").style.display = "none";
+            document.getElementById("poke_container").style.marginBottom = "128px";
             var value = document.getElementById(y);
             limit = value.getAttribute("data-value");
             offset = value.value;
@@ -102,17 +111,8 @@
         let offset = 1;
 
         more.addEventListener("click", () => {
-            if (check == true) {
-                removeChildNodes(poke_container);
-                limit = 19;
-                offset = 1;
-                check = false;
-                fetchPokemons(offset, limit);
-            } else {
-                offset += 20;
-                fetchPokemons(offset, limit);
-            }
-
+            offset += 20;
+            fetchPokemons(offset, limit);
         });
 
         const fetchPokemons = async () => {
