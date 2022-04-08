@@ -372,11 +372,38 @@
                         test.forEach(element => {
                             carddiv = document.getElementById('cards');
                             var divcard = document.createElement("div");
+                            var info = document.createElement("div");
+                            var pcard = document.createElement("p");
                             divcard.classList.add("card");
+                            info.classList.add("info");
                             var imgcard = document.createElement("img");
                             imgcard.src = element.images.small;
                             carddiv.appendChild(divcard);
                             divcard.appendChild(imgcard);
+                            if (element.tcgplayer) {
+                                if (element.tcgplayer.prices) {
+                                    var price = "$" + element.tcgplayer.prices[Object.keys(element.tcgplayer.prices)[0]].market;
+                                    var type = Object.keys(element.tcgplayer.prices)[0];
+                                    pcard.innerHTML = type.charAt(0).toUpperCase() + type.slice(1) + ' - ';
+                                    pcard.style.marginRight = "2px";
+                                    var a = document.createElement('a');
+                                    a.setAttribute('target', '_blank');
+                                    a.href = element.tcgplayer.url;
+                                    a.innerHTML = price;
+                                    a.classList.add("carda");
+                                    document.body.appendChild(a);
+                                    info.appendChild(pcard);
+                                    info.appendChild(a);
+                                } else {
+                                    pcard.innerHTML = 'This item has no current listings.';
+                                    info.appendChild(pcard);
+                                }
+                            } else {
+                                pcard.innerHTML = "Price Unavailable";
+                                info.appendChild(pcard);
+                            }
+                            divcard.appendChild(info);
+
                         });
                     })
 

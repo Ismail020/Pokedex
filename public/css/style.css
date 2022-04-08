@@ -81,10 +81,20 @@
 .card {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     margin-right: 3px;
     margin-bottom: 8px;
 
+}
+
+.carda {
+    color: #007bff;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
 }
 
 .cont {
