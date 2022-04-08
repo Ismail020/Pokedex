@@ -186,7 +186,7 @@
         <div class="flex flex-col grid grid-cols-1 mt-20 mb-20">
             <div class="flex flex-col ml-3 ml-auto mr-auto">
                 <div class="flex flex-col ml-auto mr-auto">
-                    <p class="text-white mb-5 font-medium">CARDS</p>
+                    <p class="text-white mb-5 font-medium">POKEMON CARDS</p>
                 </div>
                 <div id="cards" class="flex grid md2:grid-cols-4 lg2:grid-cols-5 gap-3 sm3:grid-cols-3 sm2:grid-cols-2 sm:grid-cols-1">
                 </div>

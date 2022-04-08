@@ -118,6 +118,10 @@
         const fetchPokemons = async () => {
             for (let i = offset; i <= offset + limit; i++) {
                 await getPokemon(i);
+                if (offset == 881) {
+                    document.getElementById("buttonmore").style.display = "none";
+                    document.getElementById("poke_container").style.marginBottom = "128px";
+                }
             }
         };
 
