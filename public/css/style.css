@@ -38,6 +38,14 @@
     transform: scale(1.1);
 }
 
+.card {
+    transition: all .2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
 .vamp {
     color: rgba(0, 0, 0, 0.6);
     text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
@@ -68,6 +76,15 @@
     border-radius: 200px;
     background-color: white;
     margin-bottom: 10px;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3px;
+    margin-bottom: 8px;
+
 }
 
 .cont {

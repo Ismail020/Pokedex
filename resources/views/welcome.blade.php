@@ -57,7 +57,6 @@
                 $.getJSON(this.cardurl, data => {
                     this.cardimg = data.data;
                     console.log(this.cardimg)
-                    {{-- console.log(this.cardimg.data[1].images.small) --}}
                     console.log(this.cardurl)
                 });
 

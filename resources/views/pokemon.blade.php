@@ -183,6 +183,16 @@
             </div>
         </div>
 
+        <div class="flex flex-col grid grid-cols-1 mt-20 mb-20">
+            <div class="flex flex-col ml-3 ml-auto mr-auto">
+                <div class="flex flex-col ml-auto mr-auto">
+                    <p class="text-white mb-5 font-medium">CARDS</p>
+                </div>
+                <div id="cards" class="flex grid md2:grid-cols-4 lg2:grid-cols-5 gap-3 sm3:grid-cols-3 sm2:grid-cols-2 sm:grid-cols-1">
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="cont">
         <div class="loader">
@@ -355,6 +365,21 @@
                         document.getElementById('shinytext').innerHTML = 'SHINY';
                     }
 
+                    text = result1[0].name.replace(/-.*$/, "");
+                    let cardurl = `https://api.pokemontcg.io/v2/cards?q=name:${text}`;
+                    $.getJSON(cardurl, data => {
+                        let test = data.data
+                        test.forEach(element => {
+                            carddiv = document.getElementById('cards');
+                            var divcard = document.createElement("div");
+                            divcard.classList.add("card");
+                            var imgcard = document.createElement("img");
+                            imgcard.src = element.images.small;
+                            carddiv.appendChild(divcard);
+                            divcard.appendChild(imgcard);
+                        });
+                    })
+
                     const type1 = document.createElement('div');
                     type1.classList.add("typecolor");
 
@@ -480,8 +505,8 @@
 
                     document.getElementById('img').src = imggg;
                     document.getElementById('img').crossOrigin = "anonymous";
-                    document.getElementById('name').innerText = result1[0].name[0].toUpperCase() + result1[0].name.slice(1);
-                    // type1.innerText = result1[0].types[0].type.name;
+                    let name = result1[0].name.replace(/-/g, ' ');
+                    document.getElementById('name').innerText = name[0].toUpperCase() + name.slice(1);
                     document.getElementById('height').innerText = result1[0].height / 10 + " m";
                     document.getElementById('weight').innerText = result1[0].weight / 10 + " kg";
                     document.getElementById('tag').innerText = result1[0].id.toString().padStart(3, '0');
