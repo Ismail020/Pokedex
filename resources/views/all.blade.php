@@ -306,7 +306,7 @@
                     </div>
                     <div class="flex flex-col truncate">
                         <span class="text-gray-500 text-sm mx-auto">N°${pokemon.id.toString().padStart(3, '0')}</span>
-                        <h3 id="test" class="font-medium text-md mx-auto mt-1">${name.replace(/-/g, ' ')}</h3>
+                        <h3 id="test" class="font-medium text-lg mx-auto mt-1">${name.replace(/-/g, ' ')}</h3>
                     </div>
                 </div>
             </a>
