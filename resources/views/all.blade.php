@@ -21,6 +21,10 @@
                                 <button id="bug" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('bug')" x-on:click="open = false" id="menu-item-8">Bug</button>
                                 <button id="normal" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('normal')" x-on:click="open = false" id="menu-item-8">Normal</button>
                                 <button id="electric" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('electric')" x-on:click="open = false" id="menu-item-8">Electric</button>
+                                <button id="ice" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('ice')" x-on:click="open = false" id="menu-item-8">Ice</button>
+                                <button id="fighting" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('fighting')" x-on:click="open = false" id="menu-item-8">Fighting</button>
+                                <button id="poison" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('poison')" x-on:click="open = false" id="menu-item-8">Poison</button>
+                                <button id="ground" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('ground')" x-on:click="open = false" id="menu-item-8">Ground</button>
                             </div>
                         </div>
                     </div>
@@ -300,9 +304,9 @@
                             <img class="rounded -mt-24 mx-auto w-24 " src="${pokemon.sprites.other.home.front_default}" />
                         </div>
                     </div>
-                    <div class="flex flex-col">
+                    <div class="flex flex-col truncate">
                         <span class="text-gray-500 text-sm mx-auto">N°${pokemon.id.toString().padStart(3, '0')}</span>
-                        <h3 id="test" class="font-medium text-lg mx-auto">${name.replace(/-/g, ' ')}</h3>
+                        <h3 id="test" class="font-medium text-md mx-auto mt-1">${name.replace(/-/g, ' ')}</h3>
                     </div>
                 </div>
             </a>

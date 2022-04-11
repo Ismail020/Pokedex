@@ -331,25 +331,27 @@
                                 let urls = element.pokemon.url;
                                 let ids = urls.split('/')[6];
                                 $.getJSON(`https://pokeapi.co/api/v2/pokemon/${ids}/`, data => {
-                                    evodiv = document.getElementById('special');
-                                    var divevo = document.createElement("div");
-                                    divevo.classList.add("evo");
-                                    var imgevo = document.createElement("img");
-                                    if (data.sprites.front_default) {
-                                        imgevo.src = data.sprites.front_default;
-                                    } else if (data.sprites.other.home.front_default) {
-                                        imgevo.src = data.sprites.other.home.front_default
-                                    } else if (data.sprites.other[data.sprites.other.length - 1]) {
-                                        imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
-                                    } else {
-                                        imgevo.src = "/img/404/sad.png"
+                                    if (!/totem/.test(data.name.replace(/-/g, ' '))) {
+                                        evodiv = document.getElementById('special');
+                                        var divevo = document.createElement("div");
+                                        divevo.classList.add("evo");
+                                        var imgevo = document.createElement("img");
+                                        if (data.sprites.front_default) {
+                                            imgevo.src = data.sprites.front_default;
+                                        } else if (data.sprites.other.home.front_default) {
+                                            imgevo.src = data.sprites.other.home.front_default
+                                        } else if (data.sprites.other[data.sprites.other.length - 1]) {
+                                            imgevo.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ids}.png`;
+                                        } else {
+                                            imgevo.src = "/img/404/sad.png"
+                                        }
+                                        var aTag = document.createElement('a');
+                                        aTag.setAttribute('href', '/' + ids);
+                                        evodiv.appendChild(divevo);
+                                        divevo.appendChild(aTag);
+                                        aTag.appendChild(imgevo);
+                                        document.getElementById('spectext').innerHTML = 'VARIETIES';
                                     }
-                                    var aTag = document.createElement('a');
-                                    aTag.setAttribute('href', '/' + ids);
-                                    evodiv.appendChild(divevo);
-                                    divevo.appendChild(aTag);
-                                    aTag.appendChild(imgevo);
-                                    document.getElementById('spectext').innerHTML = 'VARIETIES';
                                 });
                             });
                         } else {
