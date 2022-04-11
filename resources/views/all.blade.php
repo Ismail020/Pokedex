@@ -298,7 +298,7 @@
 
             const pokeInnerHTML = `
             <a href="/${pokemon.id}">
-                <div class="bg-white mt-20 border-none rounded-2xl shadow-lg min-w-52 w-52 max-w-52 h-36 ">
+                <div class="bg-white mt-24 border-none rounded-2xl shadow-lg min-w-52 w-52 max-w-52 h-36 ">
                     <div class="img-container p-6">
                         <div>
                             <img class="rounded -mt-24 mx-auto w-24 " src="${pokemon.sprites.other.home.front_default}" />
