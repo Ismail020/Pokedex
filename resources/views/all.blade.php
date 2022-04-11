@@ -6,6 +6,27 @@
                     <div x-data="{ open: false }" class="relative inline-block text-left mr-5 z-50 ">
                         <div>
                             <button x-on:click="open = ! open" class="inline-flex justify-center w-full rounded-md border border-white rounded-3xl shadow-lg px-4 py-2 bg-white text-sm font-medium text-gray-400 hover:bg-gray-50 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                                Types
+                                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div x-show="open" x-transition @click.away="open = false" class="origin-top-right absolute right-0 mt-2 w-40  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                            <div class="py-1" role="none">
+                                <button id="fire" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('fire')" x-on:click="open = false" id="menu-item-8">Fire</button>
+                                <button id="grass" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('grass')" x-on:click="open = false" id="menu-item-8">Grass</button>
+                                <button id="water" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('water')" x-on:click="open = false" id="menu-item-8">Water</button>
+                                <button id="bug" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('bug')" x-on:click="open = false" id="menu-item-8">Bug</button>
+                                <button id="normal" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('normal')" x-on:click="open = false" id="menu-item-8">Normal</button>
+                                <button id="electric" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="test('electric')" x-on:click="open = false" id="menu-item-8">Electric</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div x-data="{ open: false }" class="relative inline-block text-left mr-5 z-50 ">
+                        <div>
+                            <button x-on:click="open = ! open" class="inline-flex justify-center w-full rounded-md border border-white rounded-3xl shadow-lg px-4 py-2 bg-white text-sm font-medium text-gray-400 hover:bg-gray-50 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
                                 Generations
                                 <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -13,7 +34,7 @@
                             </button>
                         </div>
 
-                        <div x-show="open" x-transition @click.away="open = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        <div x-show="open" x-transition @click.away="open = false" class="origin-top-right absolute right-0 mt-2 w-40  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                             <div class="py-1" role="none">
                                 <button id="gen1" value="1" data-value="151" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen1')" x-on:click="open = false" id="menu-item-0">Gen I 001/151</button>
                                 <button id="gen2" value="152" data-value="100" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" onclick="gen('gen2')" x-on:click="open = false" id="menu-item-1">Gen II 152/251</button>
@@ -60,8 +81,7 @@
         <div id="buttonmore" class="mb-32 mt-16  mx-auto">
             <div class="grid gap-8 items-start justify-center">
                 <div class="relative group">
-                    <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-blue-500  rounded-lg blur opacity-75"></div>
-                    <button id="more" class="relative px-7 py-4 bg-white rounded-lg leading-none flex items-center divide-x divide-gray-600">
+                    <button id="more" class="relative px-7 py-4 bg-white rounded-lg shadow-lg leading-none flex items-center divide-x hover:bg-gray-300 hover:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out">
                         <span class="text-black">Load more</span>
                     </button>
                 </div>
@@ -104,6 +124,31 @@
             fetchPokemonss();
         }
 
+        function test(x) {
+            document.getElementById("buttonmore").style.display = "none";
+            document.getElementById("poke_container").style.marginBottom = "128px";
+            urltype = `https://pokeapi.co/api/v2/type/${x}`;
+            $.getJSON(urltype, data => {
+                removeChildNodes(poke_container);
+
+                let test = data.pokemon;
+
+
+
+                test.forEach(element => {
+                    $.getJSON(element.pokemon.url, data => {
+                        let nameee = data.name.replace(/-/g, ' ');
+                        if (!/totem/.test(nameee)) {
+                            if (data.sprites.other.home.front_default) {
+                                const pokemon = data;
+                                createPokemonCard(pokemon);
+                            }
+                        }
+                    })
+                });
+            })
+        }
+
         var check = false;
 
 
@@ -113,11 +158,11 @@
             }
         }
 
-        let limit = 19;
+        let limit = 29;
         let offset = 1;
 
         more.addEventListener("click", () => {
-            offset += 20;
+            offset += 30;
             fetchPokemons(offset, limit);
         });
 
@@ -257,13 +302,11 @@
                     </div>
                     <div class="flex flex-col">
                         <span class="text-gray-500 text-sm mx-auto">N°${pokemon.id.toString().padStart(3, '0')}</span>
-                        <h3 id="test" class="font-medium text-lg mx-auto">${name}</h3>
-                        
+                        <h3 id="test" class="font-medium text-lg mx-auto">${name.replace(/-/g, ' ')}</h3>
                     </div>
                 </div>
             </a>
             `;
-
 
             pokemonEl.innerHTML = pokeInnerHTML;
 
