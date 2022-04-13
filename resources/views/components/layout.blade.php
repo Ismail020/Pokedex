@@ -11,10 +11,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}" />
 </head>
 <body class="bg-[#eff1f7] font-sans">
-
-    <div class="flex justify-center m-10">
+    <div class="flex justify-center m-10 z-50">
         <a href="/all">
-            <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xml:space="preserve" enable-background="new 0 0 280 103" viewBox="0 0 269.46899 98.814003" height="98.814003" width="269.46899" y="0px" x="0px" id="Layer_1" version="1.1" inkscape:version="0.48.4 r9939" sodipodi:docname="English_Pokémon_logo.svg">
+            <svg class="z-50" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xml:space="preserve" enable-background="new 0 0 280 103" viewBox="0 0 269.46899 98.814003" height="98.814003" width="269.46899" y="0px" x="0px" id="Layer_1" version="1.1" inkscape:version="0.48.4 r9939" sodipodi:docname="English_Pokémon_logo.svg">
                 <metadata id="metadata105">
                     <rdf:RDF>
                         <cc:Work rdf:about="">
@@ -147,7 +146,7 @@
         </a>
     </div>
 
-    <div class="flex justify-center flex-col">
+    <div class="flex justify-center flex-col s:-mt-20 sm3:-mt-10">
         {{ $slot }}
     </div>
 

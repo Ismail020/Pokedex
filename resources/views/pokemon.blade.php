@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div id="all" class="container mx-auto sm:px-6 lg:px-28">
+    <div id="all" class="max-w-7xl mx-auto sm:px-6 lg:px-28 s:overflow-hidden md2:overflow-visible sm3:mt-10">
         <div id="nav">
             <div class=" flex inline-flex nav">
                 <form class="flex inline-flex randomm">
@@ -57,80 +57,82 @@
                 </div>
             </div>
         </div>
-        <div class=" drop-shadow-2xl rounded grid grid-cols-2">
-            <div class="flex justify-start">
-                <img class="object-contain w-96 z-50" id="img" src="" alt="">
-                <p id="japan" class="text-transparent absolute z-0 text-7xl vamp mt-[350px]"></p>
+        <div class=" drop-shadow-2xl rounded grid s:grid-cols-1 md2:grid-cols-2">
+            <div class="flex s:justify-center md2:justify-start">
+                <img class="object-contain s:w-52 md2:w-96 z-50" id="img" src="" alt="">
+                <p id="japan" class="text-transparent absolute z-0 text-7xl vamp mt-[350px] s:invisible md2:visible"></p>
             </div>
 
             <div>
                 <div class="flex flex-col">
-                    <div>
-                        <p class="text-transparent absolute z-0 text-9xl -mt-8 ml-52 vamp" id="tag"></p>
-                    </div>
-                    <div class="ml-3 z-50 drop-shadow-2xl">
-                        <p class="text-6xl text-white drop-shadow-2xl" id="name"></p>
+                    <div class="s:flex s:justify-center md2:justify-start">
+                        <div>
+                            <p class="text-transparent absolute z-0 text-9xl -mt-8 ml-52 vamp s:invisible md2:visible" id="tag"></p>
+                        </div>
+                        <div class="md2:ml-3 z-50 drop-shadow-2xl">
+                            <p class="s:text-4xl  md2:text-6xl text-white drop-shadow-2xl" id="name"></p>
+                        </div>
                     </div>
                 </div>
-                <div class="flex flex-row w-24 ml-3 mt-5">
+                <div class="flex justify-center flex-row md2:justify-start md2:w-24 s:mt-10  md2:ml-3 md2:mt-5">
                     <div id="types" class="flex flex-row">
                     </div>
                 </div>
                 <div>
-                    <div class="flex flex-row ml-3 mt-5">
-                        <div>
+                    <div class="flex flex-row s:mt-3 md2:ml-3 md2:mt-5 s:justify-center md2:justify-start">
+                        <div class="flex s:flex-row md2:flex-col">
                             <div class="flex flex-row">
                                 <p class="text-xs mr-1 text-white">Height:</p>
                                 <p class="text-xs text-gray-400" id="height"></p>
                             </div>
-                            <div class="flex flex-row">
+                            <div class="flex flex-row s:ml-2 md2:ml-0">
                                 <p class="text-xs mr-1 text-white">Weight:</p>
                                 <p class="text-xs text-gray-400 " id="weight"></p>
                             </div>
                         </div>
                     </div>
-                    <div class="ml-3 mt-5">
-                        <p class="text-white">Pokedex entry:</p>
-                        <p class="text-sm font-light text-white" id="flavor"></p>
+                    <div class="s:mt-2 md2:ml-3 md2:mt-5">
+                        <p class="text-white flex s:justify-center md2:justify-start">Pokedex entry:</p>
+                        <p class="text-sm font-light text-white s:text-center md2:text-left" id="flavor"></p>
                     </div>
                 </div>
 
-                <div class="ml-3">
-                    <p class="mt-5 text-white">Base stats:</p>
+                <div class="md2:ml-3">
+                    <p class="s:mt-3 md2:mt-5 text-white flex s:justify-center s:mt-10 md2:justify-start">Base stats:</p>
 
-                    <div>
+                    <div class="flex s:justify-center md2:justify-start">
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
-                            <p class="border-none rounded-full text-xs text-white w-8 h-8 text-center bg-red-600 flex items-center justify-center">HP</p>
+                            <p class="border-none rounded-full text-xs text-white w-7 h-7 text-center bg-red-600 flex items-center justify-center">HP</p>
                             <p id="hp" class="text-xs mt-1">40</p>
                         </div>
 
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
-                            <p class="border-none rounded-full text-xs text-white w-8 h-8 text-center bg-orange-400 flex items-center justify-center">ATK</p>
+                            <p class="border-none rounded-full text-xs text-white w-7 h-7 text-center bg-orange-400 flex items-center justify-center">ATK</p>
                             <p id="attack" class="text-xs mt-1"></p>
                         </div>
 
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
-                            <p class="border-none rounded-full text-xs text-white w-8 h-8 text-center bg-yellow-400 flex items-center justify-center">DEF</p>
+                            <p class="border-none rounded-full text-xs text-white w-7 h-7 text-center bg-yellow-400 flex items-center justify-center">DEF</p>
                             <p id="defense" class="text-xs mt-1"></p>
                         </div>
 
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
-                            <p class="border-none rounded-full text-xs text-white w-8 h-8 text-center bg-blue-400 flex items-center justify-center">SpA</p>
+                            <p class="border-none rounded-full text-xs text-white w-7 h-7 text-center bg-blue-400 flex items-center justify-center">SpA</p>
                             <p id="sp_attack" class="text-xs mt-1"></p>
                         </div>
 
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
-                            <p class="border-none rounded-full text-xs text-white w-8 h-8 text-center bg-green-400 flex items-center justify-center">SpD</p>
+                            <p class="border-none rounded-full text-xs text-white w-7 h-7 text-center bg-green-400 flex items-center justify-center">SpD</p>
                             <p id="sp_defense" class="text-xs mt-1"></p>
                         </div>
 
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
-                            <p class="border-none rounded-full text-xs text-white w-8 h-8 text-center bg-pink-400 flex items-center justify-center">SPD</p>
+                            <p class="border-none rounded-full text-xs text-white w-7 h-7 text-center bg-pink-400 flex items-center justify-center">SPD</p>
                             <p id="speed" class="text-xs mt-1"></p>
                         </div>
 
                         <div class="flex flex-col inline-flex items-center border-none rounded-full p-1 mt-1 mr-1 bg-gray-100">
-                            <p class="border-none rounded-full text-xs text-white w-8 h-8 text-center bg-purple-500 flex items-center justify-center">TOT</p>
+                            <p class="border-none rounded-full text-xs text-white w-7 h-7 text-center bg-purple-500 flex items-center justify-center">TOT</p>
                             <p id="total" class="text-xs mt-1"></p>
                         </div>
                     </div>
@@ -138,12 +140,12 @@
 
             </div>
         </div>
-        <div class="flex flex-col grid grid-cols-3 mt-20 mb-20">
+        <div class="flex flex-col grid s:grid-cols-1 md2:grid-cols-3 s:mt-10 md2:mt-20 mb-5">
             <div>
-                <div class="flex ">
-                    <p class="text-white mb-5 font-medium">EVOLUTION</p>
+                <div class="flex s:justify-center md2:justify-start">
+                    <p class="text-white s:mb-2 md2:mb-5 font-medium">EVOLUTION</p>
                 </div>
-                <div id="evo" class="flex grid grid-cols-3 gap-2 mr-10">
+                <div id="evo" class="flex justify-center md2:grid md2:grid-cols-3 s:gap-2 md2:gap-2 md2:mr-10 s:w-72 md2:w-auto m-auto">
                     <div id="1">
                     </div>
                     <div id="2">
@@ -151,27 +153,27 @@
                     <div id="3">
                     </div>
                 </div>
-                <div id="specialdiv" class="flex mt-5">
-                    <p id="spectext" class="text-white mb-5 font-medium"></p>
+                <div id="specialdiv" class="flex s:justify-center md2:justify-start s:mt-2 md2:mt-5">
+                    <p id="spectext" class="text-white s:mb-2 md2:mb-5 font-medium"></p>
                 </div>
-                <div id="special" class="flex grid grid-cols-3 gap-2 mr-10">
+                <div id="special" class="flex s:justify-center grid s:grid-cols-2 md2:grid-cols-3 gap-2 md2:mr-10 s:w-[200px]  md2:w-auto s:m-auto">
                 </div>
-                <div class="flex mt-5">
-                    <p id="shinytext" class="text-white mb-5 font-medium"></p>
+                <div class="flex s:justify-center md2:justify-start s:mt-2 md2:mt-5">
+                    <p id="shinytext" class="text-white s:mb-2 md2:mb-5 font-medium"></p>
                 </div>
-                <div id="shiny" class="flex grid grid-cols-3 gap-2 mr-10">
+                <div id="shiny" class="flex justify-center md2:grid md2:grid-cols-3 s:gap-2 md2:gap-2 md2:mr-10 s:w-72 md2:w-auto m-auto">
                 </div>
             </div>
             <div class="flex flex-col ml-3 ml-auto mr-auto">
-                <div>
-                    <p class="text-white mb-5 font-medium">ABILITIES</p>
+                <div class="flex s:justify-center md2:justify-start s:mt-10 md2:mt-0">
+                    <p class="text-white s:mb-2 md2:mb-5 font-medium">ABILITIES</p>
                 </div>
-                <div id="abilities" class="flex flex-col text-sm font-light mr-10">
+                <div id="abilities" class="flex flex-col text-sm s:text-center md2:text-left font-light md2:mr-10 ">
                 </div>
             </div>
             <div class="flex flex-col ml-auto mr-auto">
                 <div>
-                    <p class="text-white mb-5 font-medium">PREVIOUS / NEXT</p>
+                    <p class="flex s:justify-center md2:justify-start text-white mb-5 s:mt-10 md2:mt-0 font-medium">PREVIOUS / NEXT</p>
                 </div>
                 <div class="flex flex-row grid-cols-4 gap-2">
                     <div id="prev" class="flex inline-flex">
@@ -183,7 +185,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col grid grid-cols-1 mt-20 mb-20">
+        <div class="flex flex-col grid grid-cols-1 s:mt-10 md2:mt-0 mb-20">
             <div class="flex flex-col ml-3 ml-auto mr-auto">
                 <div class="flex flex-col ml-auto mr-auto">
                     <p class="text-white mb-5 font-medium">POKEMON CARDS</p>
@@ -321,6 +323,9 @@
                                 })
                             })
                         }
+                    } else {
+                        document.getElementById('2').style.display = "none";
+                        document.getElementById('3').style.display = "none";
                     }
 
                     $.getJSON(species, data => {
