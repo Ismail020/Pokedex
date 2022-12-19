@@ -8,7 +8,7 @@
 
 ```bash
 # Clone the repository to your device.
-git clone https://github.com/Ismail020/Smit.git
+git clone https://github.com/Ismail020/Pokedex.git
 
 # Copy the .env.example and change the copied file name to .env
 cp .env.example .env
